@@ -1,0 +1,27 @@
+{
+  "name": "athena",
+  "version": "1.0.0",
+  "description": "athena website",
+  "main": "index.js",
+  "scripts": {
+    "Athstart": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zain-Muiz/Athena.git"
+  },
+  "author": "Zain_Muiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zain-Muiz/Athena/issues"
+  },
+  "homepage": "https://github.com/Zain-Muiz/Athena#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.6",
+    "sequelize": "^6.3.5"
+  }
+}
