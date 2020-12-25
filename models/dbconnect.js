@@ -20,3 +20,5 @@ var db = mysql.createConnection(
           console.log("Connected To DB");
       }
   })
+
+  module.exports = db;

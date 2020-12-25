@@ -2,10 +2,26 @@ GET  http://localhost:3000/login
 
 ###
 
-POST http://localhost:3000/auth/login
+POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
     "name":"muiz",
-    "pass":"hello"
+    "email":"zzzz",
+    "password":"hello",
+    "cnfrmpassword":"hello"
 }
+
+###
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email":"zzzzz",
+    "password":"hello"
+}
+
+###
+
+GET http://localhost:3000/userdashboard
