@@ -36,8 +36,7 @@ app.use(express.static('public'));
             else{
                 
                 req.session.name= username;
-                admindash = '/admindashboard/'+ admintype;
-                console.log(admindash)
+                req.session.admintype =  admintype;
                 res.redirect('/admindashboard');
                 
             }
