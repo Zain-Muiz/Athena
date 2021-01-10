@@ -4,7 +4,7 @@
   "description": "athena website",
   "main": "",
   "scripts": {
-    "Athstart": "nodemon src/server.js"
+    "athena": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",

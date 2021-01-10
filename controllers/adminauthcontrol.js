@@ -48,11 +48,27 @@ app.use(express.static('public'));
 
     }}
 
-    module.exports.organizer = (req,res) =>{
+    module.exports.adminroute = (req,res) =>{
  
     if(req.session.email){
-            console.log('hellooo');
+        admintype = req.session.admintype;
+        if (admintype == "organizer"){
             res.render('orgdashmain');
+        }
+        else if (admintype == "superadmin"){
+            res.render('orgdashmain');  
+        }
+        else if (admintype == "volunteer"){
+            res.render('orgdashmain');  
+        }
+        else if (admintype == "finhead"){
+            res.render('finhead');  
+        }
+        else{
+        res.send("Unauthorized Access");
+        res.redirect("/admin/auth/login");
+    }
+
         try{
            console.log('try keri');
             
@@ -65,3 +81,4 @@ app.use(express.static('public'));
     else {
         res.send("please log in");
     }}
+
