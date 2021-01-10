@@ -15,6 +15,9 @@ router.get('/', adminauthcntrl.superadmin );
 else if (admintype == "volunteer"){
 router.get('/', adminauthcntrl.volunteer);  
 }
+else if (admintype == "finhead"){
+router.get('/', adminauthcntrl.fin);  
+}
 else{
     (req,res)=>{
         res.send("Unautherized Access");
