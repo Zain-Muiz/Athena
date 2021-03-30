@@ -34,6 +34,7 @@ app.use('/admin/auth', adminauthRoute);
 
 
 
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
 });

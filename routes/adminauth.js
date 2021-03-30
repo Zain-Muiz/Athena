@@ -6,4 +6,5 @@ const adminauthcntrl = require('../controllers/adminauthcontrol.js');
 
 router.post('/login', adminauthcntrl.login );
 
+
 module.exports = router;

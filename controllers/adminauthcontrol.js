@@ -22,10 +22,10 @@ app.use(express.static('public'));
             if(results.length===0){
                 return res.send("Email Or Password Incorrect");
             }
-            else{
-                username = results[0].name;
-                admintype = results[0].category;             
-            }
+            // else{
+            //     username = results[0].name;
+            //     admintype = results[0].category;             
+            // }
             if(error){
                 console.log(error)
             }
@@ -35,8 +35,8 @@ app.use(express.static('public'));
             }
             else{
                 
-                req.session.name= username;
-                req.session.admintype =  admintype;
+                req.session.name=  results[0].name;
+                req.session.admintype = results[0].category;
                 res.redirect('/admindashboard');
                 
             }
@@ -49,11 +49,12 @@ app.use(express.static('public'));
     }}
 
     module.exports.adminroute = (req,res) =>{
+        console.log(req.session.name);
  
-    if(req.session.email){
+    if(req.session.name){
         admintype = req.session.admintype;
         if (admintype == "organizer"){
-            res.render('orgdashmain');
+            res.render('orgdashmain',{name: req.session.name});
         }
         else if (admintype == "superadmin"){
             res.render('orgdashmain');  

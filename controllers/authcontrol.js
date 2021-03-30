@@ -51,19 +51,19 @@ module.exports.register = (req,res) =>{
             if(results.length===0){
                 return res.send("Email Or Password Incorrect");
             }
-            else{
-                username = results[0].name;
-            }
+            // else{
+            //     username = results[0].name;
+            // }
             if(error){
-                console.log(error)
+                console.log(error);
             }
             if( !results || !(await (bcrypt.compare(password, results[0].password))) ){
 
-                return res.send("Email Or Password Incorrect")
+                return res.send("Email Or Password Incorrect");
             }
             else{
                 
-                req.session.name= username;
+                req.session.name= results[0].name;
                 res.redirect('/userdashboard');
                 
             }

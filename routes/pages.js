@@ -1,8 +1,9 @@
 const express = require ('express');
 const app = express();
 const router = express.Router();
-const dashRoute = require('./userdashboard');
+const userdashRoute = require('./userdashboard');
 const admindashRoute = require('./admindashboard');
+const eventsRoute = require('./events');
 var path = require('path');
 
 
@@ -10,9 +11,12 @@ var path = require('path');
 router.get('/login', (req,res)=>{
     res.sendFile(path.resolve('views/login.html'));
 })
+router.get('/adminlogin', (req,res)=>{
+    res.sendFile(path.resolve('views/adminlogin.html'));
+})
 
-
-router.use('/userdashboard',dashRoute);
+router.use('/eventsubmit', eventsRoute);
+router.use('/userdashboard',userdashRoute);
 router.use('/admindashboard',admindashRoute);
 
 module.exports = router;
