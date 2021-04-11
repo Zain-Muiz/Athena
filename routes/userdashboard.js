@@ -1,6 +1,7 @@
 const express = require ('express');
 const app = express();
 const router = express.Router();
+const paymentcontroller = require('../controllers/paymentcontrol.js');
 
 router.get('/', (req,res)=>{
     if(req.session.name){
@@ -20,6 +21,12 @@ router.get('/registerevent', (req,res)=>{
         res.send("please log in")
     }
 })
+
+
+
+router.get('/eventpayment', paymentcontroller.amountgenerator);
+
+
 
 //router.get('/', userauthcntrl.userroute);
 
