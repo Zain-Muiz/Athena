@@ -49,8 +49,8 @@ document.getElementById('rzp-button1').onclick = function(e){
     "order_id": document.getElementById('rzp-text').value,
     "handler": function (response){
         document.getElementById('order-pay-id').value=response.razorpay_payment_id;
- document.getElementById('order-id').value=response.razorpay_order_id;
-  document.getElementById('order-sig').value=response.razorpay_signature;
+        document.getElementById('order-id').value=response.razorpay_order_id;
+        document.getElementById('order-sig').value=response.razorpay_signature;
     },
     "theme": {
         "color": "#227254"
