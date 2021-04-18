@@ -4,6 +4,7 @@ const app = express();
 var session = require('express-session');
 const host = 'localhost' ;
 const port = 3000;
+const sentmail = require('../controllers/mail');
 var path = require('path');
 
 
@@ -30,6 +31,16 @@ const authRoute = require('../routes/auth')
 app.use('/auth', authRoute);
 const adminauthRoute = require('../routes/adminauth')
 app.use('/admin/auth', adminauthRoute);
+
+//send Emails :
+
+app.post('/email',(req,res) => {
+  // TODO
+  // Sent mail
+  sentmail(req.body.email,req.body.text)
+  log('Data: ',req.body);
+  res.json({ message: 'Message Recieved!!!'})
+});
 
 
 
