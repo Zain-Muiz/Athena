@@ -40,7 +40,6 @@ module.exports.amountgenerator = (req,res) =>{
             }
             
         });      
-        console.log(registrationamount); 
         res.render('payment', {registrationamount:registrationamount});  
      }
     if(error){
