@@ -8,6 +8,8 @@ const sentmail = require('../controllers/mail');
 var path = require('path');
 
 
+
+
 app.use(express.static('public'));
 
 app.use(express.json());
@@ -37,8 +39,10 @@ app.use('/admin/auth', adminauthRoute);
 app.post('/email',(req,res) => {
   // TODO
   // Sent mail
-  sentmail(req.body.email,req.body.text)
-  log('Data: ',req.body);
+  var otptext = Math.floor((Math.random()*10000)+1);
+  console.log(otptext);
+  req.session.genotp = otptext;
+  sentmail(req.body.email,otptext)
   res.json({ message: 'Message Recieved!!!'})
 });
 

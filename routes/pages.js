@@ -18,6 +18,7 @@ router.get('/adminlogin', (req,res)=>{
     res.sendFile(path.resolve('views/adminlogin.html'));
 })
 
+
 router.use('/eventsubmit', eventsRoute);
 router.use('/userdashboard',userdashRoute);
 router.use('/admindashboard',admindashRoute);

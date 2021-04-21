@@ -12,7 +12,9 @@ var dash = require('../src/server');
 
 module.exports.register = (req,res) =>{
   
-    const {name,email,password,cnfrmpassword} = req.body;
+    const {name,email,phNo, College, password,cnfrmpassword, branch, yearofStudy} = req.body;
+    phoneNum = parseInt(phNo);
+    console.log(req.body)
     db.query("SELECT email FROM users where email = ?", [email], async (error,results) =>{
     if(error){
         console.log(error);
@@ -25,7 +27,7 @@ module.exports.register = (req,res) =>{
     }
 
     let hashedPass = await bcrypt.hash(password,8);
-    db.query("INSERT INTO users SET ?", {name : name, email : email, password: hashedPass},(error,reusult)=>{
+    db.query("INSERT INTO users SET ?", {name : name, email : email, phNo: phoneNum, college: College, password: hashedPass, studyYear: yearofStudy, studyBranch: branch },(error,reusult)=>{
         if(error){
             console.log(error)
         }
@@ -36,6 +38,21 @@ module.exports.register = (req,res) =>{
     });
 
     })}
+
+    module.exports.verifyregisterotp = (req,res) =>{
+        return new Promise((resolve, reject)=> {
+            console.log(typeof(req.body.typedotp));
+            console.log(typeof(req.session.genotp));
+            if(req.body.typedotp == req.session.genotp){
+                console.log('true otp');
+                resolve(true);
+            }
+            else{
+                console.log('false otp');
+                resolve(false);
+            }
+      });    
+    }
 
     module.exports.login = (req,res) =>{
  
