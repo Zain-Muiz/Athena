@@ -14,7 +14,9 @@ module.exports.register = (req,res) =>{
   
     const {name,email,phNo, College, password,cnfrmpassword, branch, yearofStudy} = req.body;
     phoneNum = parseInt(phNo);
-    console.log(req.body)
+    console.log(req.body);
+    console.log(phoneNum);
+    console.log(typeof(phoneNum));
     db.query("SELECT email FROM users where email = ?", [email], async (error,results) =>{
     if(error){
         console.log(error);
@@ -32,7 +34,9 @@ module.exports.register = (req,res) =>{
             console.log(error)
         }
         else {
-            res.send('User registered');
+            req.session.email = email;
+            res.redirect('/auth/verifymail');
+            
         }
 
     });
@@ -41,18 +45,28 @@ module.exports.register = (req,res) =>{
 
     module.exports.verifyregisterotp = (req,res) =>{
         return new Promise((resolve, reject)=> {
-            console.log(typeof(req.body.typedotp));
+            console.log(typeof(req.body.otp));
             console.log(typeof(req.session.genotp));
-            if(req.body.typedotp == req.session.genotp){
+            if(req.body.otp == req.session.genotp){
                 console.log('true otp');
-                resolve(true);
+                db.query("UPDATE users SET isVerified = '1' WHERE email = ?", [req.session.email],(error,reusult)=>{
+                    if(error){
+                        console.log(error)
+                    }
+                    else {
+                        console.log("updated");
+                        res.redirect('/userdashboard');
+                        
+                    }
+                });
             }
             else{
                 console.log('false otp');
-                resolve(false);
-            }
-      });    
+                resolve(check());
+            }   
+        });
     }
+
 
     module.exports.login = (req,res) =>{
  
