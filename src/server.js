@@ -2,12 +2,11 @@ const { json } = require('body-parser');
 const express = require ('express');
 const app = express();
 var session = require('express-session');
-const host = 'localhost' ;
-const port = 3000;
+require('dotenv').config()
+const host = process.env.HOST ;
+const port = process.env.PORT;
 const sentmail = require('../controllers/mail');
 var path = require('path');
-
-
 
 
 app.use(express.static('public'));
@@ -40,7 +39,6 @@ app.post('/email',(req,res) => {
   // TODO
   // Sent mail
   var otptext = Math.floor((Math.random()*10000)+1);
-  console.log(otptext);
   req.session.genotp = otptext;
   sentmail(req.session.email,otptext)
   res.json({ message: 'Message Recieved!!!'})
@@ -53,5 +51,5 @@ app.post('/email',(req,res) => {
 
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
+    console.log(`Server running at http://${host}:${port}/`);
 });

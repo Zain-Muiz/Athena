@@ -5,20 +5,18 @@ const paymentcontroller = require('../controllers/paymentcontrol.js');
 
 router.get('/', (req,res)=>{
     if(req.session.name){
-        console.log("hey", req.session.name);
         res.render('user', {name: req.session.name, user: "User"});
     }
     else {
-        res.send("please log in")
+        res.redirect('/login');
     }
 })
 router.get('/registerevent', (req,res)=>{
     if(req.session.name){
-        console.log("hey", req.session.name);
         res.render('eventreg');
     }
     else {
-        res.send("please log in")
+        res.redirect('/login');
     }
 })
 

@@ -5,11 +5,11 @@ const app = express();
 
 var db = mysql.createConnection(
     {
-    user: 'root',
-    password: '' ,
-    host:'localhost',
-    database: 'athena',
-    port: 3308
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD ,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DBNAME,
+    port: process.env.DB_PORT
   }); 
 
   db.connect ((error)=>{

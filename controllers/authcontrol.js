@@ -14,9 +14,6 @@ module.exports.register = (req,res) =>{
   
     const {name,email,phNo, College, password,cnfrmpassword, branch, yearofStudy} = req.body;
     phoneNum = parseInt(phNo);
-    console.log(req.body);
-    console.log(phoneNum);
-    console.log(typeof(phoneNum));
     db.query("SELECT email FROM users where email = ?", [email], async (error,results) =>{
     if(error){
         console.log(error);
@@ -46,8 +43,6 @@ module.exports.register = (req,res) =>{
 
     module.exports.verifyregisterotp = (req,res) =>{
         return new Promise((resolve, reject)=> {
-            console.log(typeof(req.body.otp));
-            console.log(typeof(req.session.genotp));
             if(req.body.otp == req.session.genotp){
                 console.log('true otp');
                 db.query("UPDATE users SET isVerified = '1' WHERE email = ?", [req.session.email],(error,reusult)=>{
@@ -55,8 +50,6 @@ module.exports.register = (req,res) =>{
                         console.log(error)
                     }
                     else {
-                        console.log("updated");
-                        console.log(req.session.email);
                         res.redirect('/userdashboard');
                         
                     }
