@@ -44,7 +44,7 @@
                           <div class="col-lg-6 form-group">
                             <input type="number" name="otp" placeholder="OTP" onkeyup="manage(this)" style="display: none;" id="otp" class="form-control border-0 shadow form-control-lg">
                           </div>
-                          <div id="error"></div>
+
                           <div class="col-lg-6 form-group">
                             <button onclick="sendotp()" type="button" class="btn btn-primary shadow px-5" id="veri" >Send OTP</button>
                             <button type="submit" style="display: none;" type="button" class="btn btn-primary shadow px-5" id="verifyotp"  >Verify Mail</button>
@@ -52,6 +52,20 @@
                           </div>
             </div>
             </form>
+                    {{#if message}}
+                          <div id="error" >
+                            <h3 class="alert alert-danger mt-4">{{message}}</h3>
+                          </div>
+                          <script>
+                            var verifyotpfield = document.getElementById('otp');
+                            verifyotpfield.style.display = "inline-block";
+                            var verifyotpbt = document.getElementById('verifyotp');
+                            verifyotpbt.style.display = "inline-block";
+                            var sendotpbt = document.getElementById('veri');
+                            sendotpbt.style.display = "none";
+
+                          </script>
+                    {{/if}}
           </div>
         </div>
         <!-- <p class="mt-5 mb-0 text-gray-400 text-center">Design by <a href="https://bootstrapious.com/admin-templates" class="external text-gray-400">Bootstrapious</a> & Your company</p> -->

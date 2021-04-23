@@ -35,6 +35,7 @@ module.exports.register = (req,res) =>{
         }
         else {
             req.session.email = email;
+            req.session.name = name;
             res.redirect('/auth/verifymail');
             
         }
@@ -55,6 +56,7 @@ module.exports.register = (req,res) =>{
                     }
                     else {
                         console.log("updated");
+                        console.log(req.session.email);
                         res.redirect('/userdashboard');
                         
                     }
@@ -62,7 +64,9 @@ module.exports.register = (req,res) =>{
             }
             else{
                 console.log('false otp');
-                resolve(check());
+                res.render('verifymail', {
+                    message: 'Wrong OTP. Try Again'
+                });
             }   
         });
     }
